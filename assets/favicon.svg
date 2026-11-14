@@ -1,0 +1,10 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- From NeoSymbian/.github profile/assets/neo-symbian-banner.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 60 360 360">
+  <rect x="60" y="60" width="360" height="360" rx="72" fill="#111827" />
+    <g transform="translate(40 40) scale(0.319)">
+      <path d="M264 535H644L577 638H192Z" fill="#F2B36E" />
+      <path d="M839 273H944L473 982H367Z" fill="#F2B36E" />
+      <path d="M676 706H1065L998 806H610Z" fill="#F2B36E" />
+    </g>
+</svg>

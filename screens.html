@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Screens · NeoSymbian</title>
+<meta name="description" content="Real frames from neoui, the Rust touch UI of NeoSymbian: home, calls, contacts, Settings, Wi-Fi, Terminal and the keyboard.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="NeoSymbian" width="150" height="26"></a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/screens" aria-current="page">Screens</a>
+      <a href="/roadmap">Roadmap</a>
+      <a href="/devices">Devices</a>
+      <a href="/devices#contribute">Contribute</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="eyebrow">Real frames · neoui snapshot tests</p>
+    <h1>What the phone shows</h1>
+    <p class="intro" style="margin-bottom:12px">Every screen here is a real frame from neoui, the Rust UI. The snapshot tests render it with the same software renderer that runs on the Pixel, at the phone's 1080 × 2160. The names, events and networks in them are demo data.</p>
+    <p class="src">Source: <a href="https://github.com/NeoSymbian/neoui/tree/main/snapshots">NeoSymbian/neoui · snapshots/</a></p>
+
+    <section class="group" aria-labelledby="g-home">
+      <h2 id="g-home">Home and the shell</h2>
+      <p>The home screen with its clock and widgets, the quick settings shade, and the app switcher.</p>
+      <div class="gallery">
+        <figure><div class="phone"><img src="/img/screens/home.png" alt="Home screen: large clock, today's events, favourite contacts, music widget and a dock" loading="lazy"></div><figcaption><b>Home</b><span>Clock, Today, contacts, music</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/shade.png" alt="Pulled-down shade with quick settings" loading="lazy"></div><figcaption><b>Shade</b><span>Quick settings</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/switcher.png" alt="App switcher with recent apps" loading="lazy"></div><figcaption><b>Switcher</b><span>Recent apps</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/clock.png" alt="Clock app" loading="lazy"></div><figcaption><b>Clock</b><span>Alarms, world, timer, stopwatch</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="group" aria-labelledby="g-phone">
+      <h2 id="g-phone">Calls and people</h2>
+      <p>Calls go out over LTE with two-way audio on the phone. These frames show the call view, the call log, Contacts and Messages.</p>
+      <div class="gallery">
+        <figure><div class="phone"><img src="/img/screens/phone-call.png" alt="Call screen: calling, with Add call, Mute, Keypad, Speaker and End" loading="lazy"></div><figcaption><b>Call</b><span>Mute, Keypad, Speaker</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/phone-log.png" alt="Phone app call log" loading="lazy"></div><figcaption><b>Recents</b><span>Call log</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/contacts.png" alt="Contacts list" loading="lazy"></div><figcaption><b>Contacts</b><span>Search and cards</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/messages-thread.png" alt="Messages conversation thread" loading="lazy"></div><figcaption><b>Messages</b><span>A thread</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="group" aria-labelledby="g-set">
+      <h2 id="g-set">Settings, Wi-Fi and tools</h2>
+      <p>Wi-Fi joins WPA2 networks on 2.4 and 5 GHz. The Terminal runs the 2010 text programs through a console server written in Rust.</p>
+      <div class="gallery">
+        <figure><div class="phone"><img src="/img/screens/settings.png" alt="Settings main list" loading="lazy"></div><figcaption><b>Settings</b><span>All sections</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/settings-wifi-connected.png" alt="Wi-Fi settings, connected to a 5 GHz network" loading="lazy"></div><figcaption><b>Wi-Fi</b><span>Connected, 5 GHz</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/browser-page.png" alt="Browser showing a page" loading="lazy"></div><figcaption><b>Browser</b><span>A page</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/terminal.png" alt="Terminal with a demo shell session" loading="lazy"></div><figcaption><b>Terminal</b><span>Esc, Tab, Ctrl, arrows</span><span class="flag">demo text, not a real session</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="group" aria-labelledby="g-kb">
+      <h2 id="g-kb">A system keyboard in three languages</h2>
+      <p>English, Armenian (phonetic) and Russian. The globe key switches layouts, and any text field raises the keyboard.</p>
+      <div class="gallery">
+        <figure><div class="phone"><img src="/img/screens/keyboard-en.png" alt="Keyboard, English layout" loading="lazy"></div><figcaption><b>English</b></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/keyboard-hy.png" alt="Keyboard, Armenian phonetic layout" loading="lazy"></div><figcaption><b>Armenian</b><span>Phonetic</span></figcaption></figure>
+        <figure><div class="phone"><img src="/img/screens/keyboard-ru.png" alt="Keyboard, Russian layout" loading="lazy"></div><figcaption><b>Russian</b></figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom">
+    <img src="/assets/logo.svg" alt="" width="104" height="18">
+    <span>Our code is Apache-2.0. Symbian source is EPL-1.0. NeoSymbian is not affiliated with Nokia, Accenture, the former Symbian Foundation, or Google.</span>
+    <a href="https://github.com/NeoSymbian">github.com/NeoSymbian</a>
+  </footer>
+</div>
+</body>
+</html>

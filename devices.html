@@ -1,0 +1,198 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Devices and contribute · NeoSymbian</title>
+<meta name="description" content="Which phones run NeoSymbian, how to report a phone you tested, and how to contribute.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="NeoSymbian" width="150" height="26"></a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/screens">Screens</a>
+      <a href="/roadmap">Roadmap</a>
+      <a href="/devices" aria-current="page">Devices</a>
+      <a href="/devices#contribute">Contribute</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="eyebrow">Devices and contribute</p>
+    <h1>Which phones run it, and how to help</h1>
+    <p class="intro">Only the Pixel 3a XL is ported. Other phones are a shortlist, chosen by SoC family and bootloader. Reports from people who test other phones go into the same matrix.</p>
+
+    <section aria-labelledby="dev-h">
+      <h2 id="dev-h">Device matrix</h2>
+      <p class="muted">The Pixel 3a XL status comes from the roadmap. Shortlist rows are candidates, not ports.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phone (codename)</th><th>SoC</th><th>Status</th><th>New work</th></tr></thead>
+          <tbody>
+            <tr><td><b>Google Pixel 3a XL (bonito)</b></td><td>SDM670</td><td><span class="pill done">kernel, storage, Wi-Fi, LTE calls</span></td><td>Calling C7, power, daily use</td></tr>
+            <tr><td>Google Pixel 3a (sargo)</td><td>SDM670</td><td><span class="pill">candidate</span></td><td>Same SoC: the SoC support carries over</td></tr>
+            <tr><td>OnePlus 6 (enchilada)</td><td>SDM845</td><td><span class="pill">candidate</span></td><td>A UFS storage driver, the main cost of the family</td></tr>
+            <tr><td>Google Pixel 3 (blueline)</td><td>SDM845</td><td><span class="pill">candidate</span></td><td>As OnePlus 6</td></tr>
+            <tr><td>Fairphone 4 (fp4)</td><td>SM7225</td><td><span class="pill">candidate</span></td><td>UFS and newer clock and power blocks</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted small" style="margin-top:12px">From the <a href="https://github.com/NeoSymbian/docs/blob/main/devices.md">device survey</a>. Phones with AArch64-only cores are out, because the 2010 user side runs as 32-bit code.</p>
+    </section>
+
+    <section class="section" id="report" aria-labelledby="sub-h">
+      <h2 id="sub-h">Report a phone you tested</h2>
+      <p class="muted" style="max-width:66ch">Tried NeoSymbian on another phone, or on the Pixel? Tell us what worked. Fill in only what you know.</p>
+
+      <form id="device-form" class="panel" aria-describedby="device-privacy" novalidate>
+        <div class="fields">
+          <label for="d-model">Phone model <input id="d-model" name="model" required maxlength="80" placeholder="Google Pixel 3a XL"></label>
+          <label for="d-codename">Codename <input id="d-codename" name="codename" maxlength="40" placeholder="bonito"></label>
+        </div>
+        <div class="fields">
+          <label for="d-boot">Bootloader
+            <select id="d-boot" name="bootloader"><option>Unlocked</option><option>Locked</option><option>Not sure</option></select></label>
+          <label for="d-build">Build or commit tested <input id="d-build" name="build" maxlength="120" placeholder="kernel abc1234"></label>
+        </div>
+        <fieldset>
+          <legend>What you saw working</legend>
+          <label><input type="checkbox" name="w" value="Boots"> Boots</label>
+          <label><input type="checkbox" name="w" value="Screen"> Screen</label>
+          <label><input type="checkbox" name="w" value="Touch"> Touch</label>
+          <label><input type="checkbox" name="w" value="Storage"> Storage</label>
+          <label><input type="checkbox" name="w" value="Calls"> Calls</label>
+          <label><input type="checkbox" name="w" value="Wi-Fi"> Wi-Fi</label>
+        </fieldset>
+        <label for="d-log">Kernel log, last lines <small>Text only. Remove IMEI, ICCID and serial numbers first.</small>
+          <textarea id="d-log" name="log" maxlength="8000" placeholder="Paste the log from the debug console here"></textarea></label>
+        <label for="d-contact">Contact <small>Optional. Only if you want us to get back to you.</small>
+          <input id="d-contact" name="contact" type="email" maxlength="120" placeholder="you@example.com"></label>
+        <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+        <p id="device-privacy" class="muted small" style="margin:0">The phone, the result and the log go to the project sheet, and to a public GitHub issue if you open one. Your contact goes to the sheet only, which only maintainers can read. It is never published.</p>
+        <div class="actions">
+          <button class="btn primary" type="submit">Send the report</button>
+          <button class="btn" type="reset">Clear</button>
+        </div>
+        <div id="device-result" class="result" role="status" hidden></div>
+      </form>
+    </section>
+
+    <section class="section" id="contribute" aria-labelledby="flow-h">
+      <h2 id="flow-h">How a change gets in</h2>
+      <p class="muted" style="max-width:66ch">Work happens in forks under the NeoSymbian org. Upstream branches stay as they are, and nothing goes back to SymbianSource.</p>
+      <ol class="flow">
+        <li><span class="k">01</span><h3>Fork</h3><p>Fork the repo under your account and branch from <code>main</code>.</p></li>
+        <li><span class="k">02</span><h3>Gate</h3><p>Run the gate for that repo before you commit. The gates are listed below.</p></li>
+        <li><span class="k">03</span><h3>Commit</h3><p>Commit only your own files. Changes to Symbian files are marked <code>NeoSymbian</code>.</p></li>
+        <li><span class="k">04</span><h3>Pull request</h3><p>Open a PR against <code>NeoSymbian/&lt;repo&gt;</code>. Say what you tested, and on which phone.</p></li>
+        <li><span class="k">05</span><h3>Review</h3><p>A maintainer merges. Kernel changes also need a QEMU or phone run.</p></li>
+      </ol>
+
+      <div class="gates">
+        <div class="gate"><h3>e32-rs, telephony, neolink</h3><pre>cargo fmt --check
+cargo clippy -- -D warnings
+cargo test
+cargo arm</pre></div>
+        <div class="gate"><h3>neoui</h3><pre>cargo fmt --check
+cargo clippy --all-targets -- -D warnings
+cargo test</pre></div>
+        <div class="gate"><h3>kernel</h3><pre>neo kernel qemu
+neo qemu &lt;secs&gt;
+then re-pin build/sources.lock</pre></div>
+        <div class="gate"><h3>docs</h3><pre>No gate. Update the roadmap and the
+org profile when a milestone lands.</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Get in touch</h2>
+      <p class="muted" style="max-width:66ch">Questions, a phone to lend, or something the issue tracker doesn't fit. Bugs and code questions go best in a <a href="https://github.com/NeoSymbian/docs/issues">GitHub issue</a>.</p>
+      <form id="contact-form" class="panel" novalidate>
+        <div class="fields">
+          <label for="c-name">Name <small>Optional</small><input id="c-name" name="name" maxlength="80" autocomplete="name"></label>
+          <label for="c-contact">Email <input id="c-contact" name="contact" type="email" required maxlength="120" autocomplete="email" placeholder="you@example.com"></label>
+        </div>
+        <label for="c-message">Message <textarea id="c-message" name="message" required maxlength="4000"></textarea></label>
+        <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+        <p class="muted small" style="margin:0">Your message and email go to the project sheet, which only maintainers can read.</p>
+        <div class="actions"><button class="btn primary" type="submit">Send the message</button></div>
+        <div id="contact-result" class="result" role="status" hidden></div>
+      </form>
+    </section>
+
+    <section class="section" id="legal" aria-labelledby="lic-h">
+      <h2 id="lic-h">Licences and legal</h2>
+      <p class="muted" style="max-width:66ch">Our code is Apache-2.0. Symbian code is EPL-1.0, and the Symbian files we change become EPL-2.0. Our Syborg board files in QEMU are MIT, inside GPL-2.0 QEMU. The UI links Slint under GPL-3.0, so ROM images with it are not published. NeoSymbian is not affiliated with Nokia, Accenture, the former Symbian Foundation, or Google.</p>
+    </section>
+  </main>
+
+  <footer class="bottom">
+    <img src="/assets/logo.svg" alt="" width="104" height="18">
+    <span>Our code is Apache-2.0. Symbian source is EPL-1.0. NeoSymbian is not affiliated with Nokia, Accenture, the former Symbian Foundation, or Google.</span>
+    <a href="https://github.com/NeoSymbian">github.com/NeoSymbian</a>
+  </footer>
+</div>
+
+<script type="module">
+import { clean, issueUrl, send } from '/assets/report.js';
+import { SHEET_URL, ISSUES_REPO } from '/assets/config.js';
+
+function show(box, ok, html) {
+  box.className = 'result ' + (ok ? 'ok' : 'err');
+  box.innerHTML = html;
+  box.hidden = false;
+}
+function escape(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+// Both forms: browser validation first, a honeypot, then one POST to the sheet.
+async function submit(form, box, kind, record, links) {
+  if (!form.reportValidity()) return;
+  if (form.website.value) { show(box, true, '<p>Thanks.</p>'); return; } // a bot filled the hidden field
+  const btn = form.querySelector('button[type=submit]');
+  if (!SHEET_URL) { show(box, kind === 'device', links.none); return; }
+  btn.disabled = true;
+  try {
+    await send(SHEET_URL, kind, record);
+    show(box, true, links.sent);
+    form.reset();
+  } catch (e) {
+    show(box, false, links.failed.replace('%s', escape(String(e.message || e))));
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+const dform = document.getElementById('device-form');
+dform.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(dform);
+  const r = clean({ ...Object.fromEntries(f), working: f.getAll('w').join(', ') });
+  const issue = `<a class="btn" href="${escape(issueUrl(r, ISSUES_REPO))}" target="_blank" rel="noopener">Also open it as a GitHub issue</a>`;
+  submit(dform, document.getElementById('device-result'), 'device', r, {
+    sent: `<p>Sent. Thank you for testing.</p><p>${issue}</p>`,
+    none: `<p>Open your report as a GitHub issue. The fields are filled in for you.</p><p>${issue.replace('Also open', 'Open')}</p>`,
+    failed: `<p>The report didn't reach the project sheet (%s). Try again, or open it on GitHub instead.</p><p>${issue.replace('Also open', 'Open')}</p>`,
+  });
+});
+dform.addEventListener('reset', () => { document.getElementById('device-result').hidden = true; });
+
+const cform = document.getElementById('contact-form');
+cform.addEventListener('submit', e => {
+  e.preventDefault();
+  const issues = `https://github.com/${ISSUES_REPO}/issues/new`;
+  submit(cform, document.getElementById('contact-result'), 'contact', clean(Object.fromEntries(new FormData(cform))), {
+    sent: '<p>Sent. We will reply by email.</p>',
+    none: `<p>The contact form isn't connected yet. Please <a href="${issues}">open a GitHub issue</a> instead.</p>`,
+    failed: `<p>The message didn't send (%s). Try again, or <a href="${issues}">open a GitHub issue</a>.</p>`,
+  });
+});
+</script>
+</body>
+</html>

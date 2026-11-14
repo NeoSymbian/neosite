@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NeoSymbian</title>
+<meta name="description" content="Open-source Symbian for modern hardware: the 2010 EKA2 kernel on 64-bit ARM, the original user side, and a new touch UI in Rust, on the Google Pixel 3a XL.">
+<meta property="og:title" content="NeoSymbian">
+<meta property="og:description" content="The 2010 Symbian, running on a 2018 phone.">
+<meta property="og:image" content="/img/screens/home.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="home">
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="NeoSymbian" width="150" height="26"></a>
+    <nav aria-label="Main">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/screens">Screens</a>
+      <a href="/roadmap">Roadmap</a>
+      <a href="/devices">Devices</a>
+      <a href="/devices#contribute">Contribute</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Open-source Symbian for modern hardware</p>
+        <h1>The 2010 Symbian, <em>running on a 2018 phone.</em></h1>
+        <p class="lede">NeoSymbian ports the EKA2 kernel to 64-bit ARM and keeps the original Symbian^3 user side running unchanged. The first target is the Google Pixel 3a XL. The new touch UI is written in Rust.</p>
+        <div class="actions">
+          <a class="btn primary" href="/roadmap">See what works</a>
+          <a class="btn" href="/devices#contribute">Help build it</a>
+        </div>
+      </div>
+      <figure class="stage" aria-label="Pixel 3a XL showing the NeoSymbian home screen">
+        <img class="still" src="/img/screens/home.png" alt="NeoSymbian home screen: clock, today's events, contacts and a dock">
+        <canvas id="hero" data-screen="/img/screens/home.png" aria-hidden="true"></canvas>
+        <figcaption class="cap">Pixel 3a XL · real neoui frame, demo data</figcaption>
+      </figure>
+    </section>
+
+    <section class="facts" aria-label="What works today">
+      <div class="fact"><b>8 / 8</b><span>cores booted, GICv3 and PSCI</span></div>
+      <div class="fact"><b>Real 2010</b><span>Symbian user side runs unmodified on the phone</span></div>
+      <div class="fact"><b>LTE</b><span>registers, places and takes calls with two-way audio</span></div>
+      <div class="fact"><b>Wi-Fi</b><span>joins WPA2, gets an IP address, reaches the internet</span></div>
+    </section>
+
+    <section class="idea" id="idea">
+      <div>
+        <h2>Why Symbian, and why now</h2>
+      </div>
+      <div>
+        <p><strong>Symbian^3</strong> was a capable, small-footprint OS: a microkernel with real multitasking, a strong C++ SDK and a file system built for phones. Its source was released in 2010. No phone has shipped it since.</p>
+        <p>NeoSymbian asks what it would take to run it on a phone people carry today. The kernel is ported to AArch64 with 32-bit pointers. The 2010 user side stays as it was, in 32-bit mode. New drivers are written where they belong: timing-critical ones in C++ in the kernel, protocol logic in Rust on the user side.</p>
+        <div class="status" aria-label="Stage summary">
+          <span class="pill done">Kernel on the phone</span>
+          <span class="pill done">Storage, touch and screen</span>
+          <span class="pill done">Calls and Wi-Fi</span>
+          <span class="pill progress">Complete calls (C7)</span>
+          <span class="pill done">Call log and contacts (C8)</span>
+        </div>
+        <p class="small" style="margin-top:14px"><a href="/roadmap">See every phase and stage</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom">
+    <img src="/assets/logo.svg" alt="" width="104" height="18">
+    <span>Our code is Apache-2.0. Symbian source is EPL-1.0. NeoSymbian is not affiliated with Nokia, Accenture, the former Symbian Foundation, or Google.</span>
+    <a href="https://github.com/NeoSymbian">github.com/NeoSymbian</a>
+  </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+<script src="/assets/hero.js"></script>
+</body>
+</html>

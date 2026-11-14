@@ -1,0 +1,200 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roadmap · NeoSymbian</title>
+<meta name="description" content="Where NeoSymbian stands: seven phases from kernel bring-up to a daily phone, every stage with its state.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="NeoSymbian" width="150" height="26"></a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/screens">Screens</a>
+      <a href="/roadmap" aria-current="page">Roadmap</a>
+      <a href="/devices">Devices</a>
+      <a href="/devices#contribute">Contribute</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="eyebrow">Roadmap</p>
+    <h1>From a booting kernel to a daily phone</h1>
+    <p class="intro">NeoSymbian moves in seven phases. Each one builds on the ones before it, and work inside a phase runs in parallel parts. Every stage keeps its name from the <a href="https://github.com/NeoSymbian/docs/blob/main/roadmap.md">project docs</a>. Status as of <time id="as-of"></time>.</p>
+
+    <noscript><p class="intro">This page needs JavaScript to draw the roadmap. The same information is in the <a href="https://github.com/NeoSymbian/docs/blob/main/roadmap.md">roadmap document</a>.</p></noscript>
+
+    <section aria-label="Totals"><div class="summary" id="summary"></div></section>
+
+    <section aria-labelledby="phases-h">
+      <h2 id="phases-h">Phases</h2>
+      <p class="muted" style="max-width:66ch">In order. A phase is done when all of its stages are; the bar shows done, in progress and blocked stages.</p>
+      <ol class="phases" id="phases"></ol>
+    </section>
+
+    <section aria-labelledby="parts-h">
+      <div class="toolbar">
+        <div>
+          <h2 id="parts-h" style="margin:0">Parts of the project</h2>
+          <p class="muted" style="margin:4px 0 0">Every stage, in order within its part.</p>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Show stages"></div>
+      </div>
+      <div class="parts-list" id="parts"></div>
+    </section>
+
+    <section class="section" id="architecture" aria-labelledby="arch-h">
+      <p class="eyebrow">Architecture</p>
+      <h2 id="arch-h">Three ABIs, one phone</h2>
+      <p class="intro" style="margin-bottom:20px">The kernel is 64-bit code with 32-bit pointers. The 2010 user side runs as 32-bit ARM code at EL0. New UI code is Rust on the user side. Each layer's language follows from its ABI.</p>
+
+      <div class="arch">
+        <svg viewBox="0 0 900 470" role="img" aria-labelledby="archsvg">
+          <title id="archsvg">Layers: Rust apps and UI server on top of the Symbian user side, on top of the AArch64 kernel, on the phone hardware</title>
+          <rect x="20" y="20" width="860" height="92" rx="14" fill="#111827" stroke="#6cb6ff" stroke-width="1.5"/>
+          <text x="44" y="50" fill="#f4efe6" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">Rust apps and UI server</text>
+          <text x="44" y="78" fill="#9aa3b2" font-family="Inter, sans-serif" font-size="14">neoui · Phone · Contacts · Settings · Wi-Fi · Terminal   (armv5te-none-eabi, no_std + e32)</text>
+
+          <rect x="20" y="132" width="860" height="92" rx="14" fill="#111827" stroke="#2c3850" stroke-width="1.5"/>
+          <text x="44" y="162" fill="#f4efe6" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">Symbian^3 user side, unchanged</text>
+          <text x="44" y="190" fill="#9aa3b2" font-family="Inter, sans-serif" font-size="14">file server, estart, ESOCK, console · AArch32 EL0 · ARMv5TE, soft-float</text>
+
+          <rect x="20" y="244" width="860" height="108" rx="14" fill="#111827" stroke="#f2b36e" stroke-width="1.5"/>
+          <text x="44" y="274" fill="#f4efe6" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">EKA2 kernel, AArch64, ILP32</text>
+          <text x="44" y="302" fill="#9aa3b2" font-family="Inter, sans-serif" font-size="14">SMP nanokernel, flexible memory model, GICv3, timers, exec calls · C++ drivers in baseport/arm64</text>
+          <text x="44" y="330" fill="#f2b36e" font-family="JetBrains Mono, monospace" font-size="13">eMMC · SPMI · Synaptics I2C · DWC3 USB · modem IPA · WCN3990 · audio DSP</text>
+
+          <rect x="20" y="372" width="860" height="78" rx="14" fill="#0b1019" stroke="#2c3850" stroke-width="1.5"/>
+          <text x="44" y="404" fill="#f4efe6" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">Pixel 3a XL (SDM670)</text>
+          <text x="44" y="430" fill="#9aa3b2" font-family="Inter, sans-serif" font-size="14">8 cores · 2018 hardware · unlockable bootloader</text>
+
+          <line x1="450" y1="112" x2="450" y2="132" stroke="#9aa3b2" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="450" y1="224" x2="450" y2="244" stroke="#9aa3b2" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="450" y1="352" x2="450" y2="372" stroke="#9aa3b2" stroke-width="1.5" stroke-dasharray="4 4"/>
+        </svg>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Who writes what</h3>
+          <table>
+            <thead><tr><th>Layer</th><th>Language</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td>Kernel drivers</td><td>C++</td><td>eMMC, SPMI, USB, IPA, timers</td></tr>
+              <tr><td>Protocol and policy</td><td>Rust (user side)</td><td>QMI, Wi-Fi control, touch protocol, UI</td></tr>
+              <tr><td>Glue to Symbian</td><td>thin C++</td><td>ETel and ESOCK plugins</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Changes to Symbian code</h3>
+          <p class="muted">Changes are made in place in the forks, marked <code>NeoSymbian</code>. Changed Symbian files are EPL-2.0. Our new files are Apache-2.0. The upstream branches are never changed, and nothing is pushed to SymbianSource.</p>
+          <p class="muted small">Kernel: <a href="https://github.com/NeoSymbian/kernel">NeoSymbian/kernel</a>, with the port in Symbian's own folder layout.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom">
+    <img src="/assets/logo.svg" alt="" width="104" height="18">
+    <span>Our code is Apache-2.0. Symbian source is EPL-1.0. NeoSymbian is not affiliated with Nokia, Accenture, the former Symbian Foundation, or Google.</span>
+    <a href="https://github.com/NeoSymbian">github.com/NeoSymbian</a>
+  </footer>
+</div>
+
+<script type="module">
+import { AS_OF, PHASES, PARTS, STAGES, STATES, STATE_LABEL, WHERE_LABEL, counts, phaseState, docUrl } from '/assets/roadmap.js';
+
+// Small DOM helper: el('div.cls', {attr}, ...children). Text goes in as text, never as HTML.
+function el(tag, attrs = {}, ...kids) {
+  const [name, ...cls] = tag.split('.');
+  const e = document.createElement(name);
+  if (cls.length) e.className = cls.join(' ');
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  for (const k of kids.flat()) if (k != null && k !== '') e.append(k);
+  return e;
+}
+const mark = state => el('i.mk.' + state, { 'aria-hidden': 'true' });
+const fmtDate = d => d ? new Date(d + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : '';
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
+const asOf = document.getElementById('as-of');
+asOf.dateTime = AS_OF;
+asOf.textContent = fmtDate(AS_OF);
+
+// Totals
+const total = counts(STAGES);
+document.getElementById('summary').append(...STATES.map(s =>
+  el('div', {}, el('b', {}, String(total[s])), el('span', {}, mark(s), STATE_LABEL[s]))));
+
+// Phases
+document.getElementById('phases').append(...PHASES.map(p => {
+  const st = STAGES.filter(s => s.phase === p.n);
+  const c = counts(st), state = phaseState(st);
+  const parts = [...new Set(st.map(s => s.part))].map(id => PARTS.find(x => x.id === id).title);
+  const bar = el('div.bar', { role: 'img', 'aria-label': `${c.done} of ${st.length} stages done` },
+    ...['done', 'progress', 'blocked'].map(k => c[k] ? el('i.b-' + k, { style: `width:${(c[k] / st.length) * 100}%` }) : null));
+  const extra = [c.progress && `${c.progress} in progress`, c.blocked && `${c.blocked} blocked`].filter(Boolean).join(' · ');
+  return el('li.phase.' + state, {},
+    el('span.num', { 'aria-hidden': 'true' }, String(p.n)),
+    el('h3', {}, p.title),
+    el('span.state', {}, STATE_LABEL[state]),
+    bar,
+    el('span.count', {}, `${c.done} of ${plural(st.length, 'stage')} done` + (extra ? ` · ${extra}` : '')),
+    el('span.parts', {}, parts.join(' · ')));
+}));
+
+// Parts, each with its stages in phase order (the data's order within a phase)
+const rows = [];
+const empties = [];
+document.getElementById('parts').append(...PARTS.map(part => {
+  const st = STAGES.filter(s => s.part === part.id).sort((a, b) => a.phase - b.phase);
+  const c = counts(st);
+  const list = el('ol.stages', {}, ...st.map(s => {
+    const row = el('li.st', { 'data-state': s.state },
+      mark(s.state),
+      el('span.id', {}, s.id),
+      el('div.what', {}, el('b', {}, s.title), s.note ? el('small', {}, s.note) : null),
+      el('div.meta', {},
+        el('span.where', {}, WHERE_LABEL[s.where]),
+        s.date ? el('time', { datetime: s.date }, fmtDate(s.date)) : null,
+        el('span', { class: 'pill ' + s.state }, STATE_LABEL[s.state]),
+        el('a', { href: docUrl(s.doc), 'aria-label': `${s.id} in the docs` }, 'Doc')));
+    rows.push(row);
+    return row;
+  }));
+  const empty = el('p.empty', { hidden: '' }, 'No stages in this state.');
+  empties.push([list, empty]);
+  return el('article.part', { id: 'part-' + part.id },
+    el('header', {},
+      el('div', {}, el('h3', {}, part.title), el('p', {}, part.text)),
+      el('div.meta', {},
+        el('span.small.muted', {}, `${c.done} of ${st.length} done`),
+        el('a', { href: part.doc }, 'Read the plan'))),
+    list, empty);
+}));
+
+// Filters
+const filters = document.getElementById('filters');
+const show = state => {
+  for (const b of filters.children) b.setAttribute('aria-pressed', String(b.dataset.state === state));
+  for (const r of rows) r.hidden = state !== 'all' && r.dataset.state !== state;
+  for (const [list, empty] of empties) empty.hidden = [...list.children].some(r => !r.hidden);
+};
+filters.append(...['all', ...STATES].map(s => {
+  const b = el('button', { type: 'button', 'data-state': s, 'aria-pressed': 'false' },
+    s === 'all' ? null : mark(s), s === 'all' ? `All (${STAGES.length})` : `${STATE_LABEL[s]} (${total[s]})`);
+  b.addEventListener('click', () => show(s));
+  return b;
+}));
+show('all');
+</script>
+</body>
+</html>
