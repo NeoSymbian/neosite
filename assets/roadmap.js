@@ -3,7 +3,7 @@
 // tests/roadmap.test.js checks ids, order and that states agree with dependencies.
 // To change a state, edit the stage here and move AS_OF.
 
-export const AS_OF = '2026-11-14';
+export const AS_OF = '2026-11-16';
 export const STATES = ['done', 'progress', 'blocked', 'planned'];
 export const STATE_LABEL = { done: 'Done', progress: 'In progress', blocked: 'Blocked', planned: 'Planned' };
 export const WHERE_LABEL = { phone: 'On the phone', installed: 'Installed', qemu: 'QEMU', host: 'Host tests' };
@@ -130,8 +130,8 @@ export const STAGES = [
     note: 'Recents, caller ID, call waiting, contacts and the blocklist, as the Phone app (NEOPHONE). Installed on slot a.', doc: 'telephony.md', after: ['C7'] },
   { id: 'ADSP', title: 'Modem restart without losing call audio', part: 'telephony', phase: 6, state: 'progress', date: '2026-11-13', where: 'phone',
     note: 'The next telephony step: keep the audio DSP in step when the modem restarts.', doc: 'telephony.md', after: ['C6'] },
-  { id: 'C9', title: 'Text messages (SMS)', part: 'telephony', phase: 6, state: 'planned', date: '', where: 'phone',
-    note: '', doc: 'telephony.md', after: ['C5'] },
+  { id: 'C9', title: 'Text messages (SMS)', part: 'telephony', phase: 6, state: 'done', date: '2026-11-16', where: 'phone',
+    note: 'SMS through the modem daemon, Messages as the third app of NEOPHONE, Reply with message and message blocking. Sent, delivered and received on the phone.', doc: 'telephony.md', after: ['C5'] },
   { id: 'C10', title: 'Mobile data', part: 'telephony', phase: 6, state: 'planned', date: '', where: 'phone',
     note: 'Internet over the cellular network, through the packet engine.', doc: 'telephony.md', after: ['C5b'] },
   { id: 'C12', title: 'Modem persistence and power', part: 'telephony', phase: 6, state: 'planned', date: '', where: 'phone',
