@@ -31,7 +31,7 @@ export const PARTS = [
   { id: 'smooth', title: 'Smooth UI', text: 'Input, frame pacing, compositing and CPU clocks for a fluid UI.', doc: DOCS + 'smooth-ui.md' },
   { id: 'telephony', title: 'Telephony', text: 'The Pixel\'s modem, driven from Rust: calls and audio now, then messages and data.', doc: DOCS + 'telephony.md' },
   { id: 'wifi', title: 'Wi-Fi and wireless', text: 'The WCN3990 chip: firmware control, WPA2, a Rust IP stack and the 2010 socket API.', doc: DOCS + 'wifi.md' },
-  { id: 'legacy', title: 'Old apps', text: 'Unchanged 2010 Symbian GUI programs, running inside the new UI.', doc: 'https://github.com/NeoSymbian/neoui' },
+  { id: 'legacy', title: 'Old apps', text: 'Unchanged S60 apps from old .sis packages, running inside the new UI.', doc: DOCS + 'legacy.md' },
   { id: 'release', title: 'Release readiness', text: 'The kernel modernization track: the gates a supported release must pass.', doc: DOCS + 'kernel-modernization.md' },
 ];
 
@@ -138,8 +138,8 @@ export const STAGES = [
     note: '', doc: 'telephony.md', after: ['C7'] },
   { id: 'C11', title: 'Voice over LTE', part: 'telephony', phase: 6, state: 'planned', date: '', where: 'phone',
     note: 'A stretch goal, with a go/no-go decision first.', doc: 'telephony.md', after: ['C10'] },
-  { id: 'M4', title: 'Kernel performance', part: 'kernel', phase: 6, state: 'progress', date: '2026-11-08', where: 'phone',
-    note: 'big.LITTLE-aware balancing is done; CPU frequency scaling has started.', doc: 'roadmap.md', after: ['M3'] },
+  { id: 'M4', title: 'Kernel performance', part: 'kernel', phase: 6, state: 'progress', date: '2026-11-15', where: 'phone',
+    note: 'big.LITTLE-aware balancing is done and CPU frequency scaling has started. Since 2026-11-15 the RAM map comes from the bootloader (1687 MB in 8 banks), and old SMP-unsafe apps run one CPU at a time.', doc: 'roadmap.md', after: ['M3'] },
   { id: 'H3', title: 'Charging and suspend', part: 'hardware', phase: 6, state: 'planned', date: '', where: 'phone',
     note: 'Charging control and sleep, for a battery that lasts a day.', doc: 'roadmap.md', after: ['H3a', 'TSENS'] },
   { id: 'D3', title: 'Media audio', part: 'hardware', phase: 6, state: 'planned', date: '', where: 'phone',
@@ -154,10 +154,14 @@ export const STAGES = [
     note: '', doc: 'neoui-shell.md', after: ['Part 1'] },
   { id: 'S4–S5', title: 'NEON builds and the display engine', part: 'smooth', phase: 6, state: 'planned', date: '', where: 'phone',
     note: 'Faster drawing code, then vsync and hardware planes.', doc: 'smooth-ui.md', after: ['S1–S3'] },
-  { id: 'Old apps', title: '2010 GUI programs inside neoui', part: 'legacy', phase: 6, state: 'progress', date: '2026-11-14', where: 'phone',
-    note: 'Old apps open in a guest screen on the phone; a runtime for prebuilt binaries is in progress.', doc: 'https://github.com/NeoSymbian/neoui', after: ['R7'] },
+  { id: 'L0.5', title: 'The Old apps launcher', part: 'legacy', phase: 6, state: 'done', date: '2026-11-14', where: 'phone',
+    note: 'An Old apps grid with the installed apps and their real icons; a tap starts the app in a 2010 window server inside neoui.', doc: 'legacy.md', after: ['R7'] },
+  { id: 'L2', title: 'Two usable old apps: X-plore and Frozen Bubble', part: 'legacy', phase: 6, state: 'progress', date: '2026-11-16', where: 'phone',
+    note: 'Both run on the phone from their original .sis packages: X-plore lists C: and E:, Frozen Bubble shows its menu. Keys, audio and the full game are next.', doc: 'legacy.md', after: ['L0.5'] },
   { id: 'BT/GNSS', title: 'Bluetooth and location', part: 'wifi', phase: 6, state: 'planned', date: '', where: 'phone',
-    note: '', doc: 'driver-support.md', after: ['W0–W2'] },
+    note: 'Bluetooth is designed (2026-11-15): a new Rust host stack for the WCN3990, BLE first, with the 2010 client libraries kept. B0, the first contact with the chip, is next.', doc: 'bluetooth.md', after: ['W7'] },
+  { id: 'Browser', title: 'A modern web browser', part: 'shell', phase: 6, state: 'planned', date: '', where: 'phone',
+    note: 'Designed 2026-11-15: Servo as a native app. WB0, a proof on the host, comes first.', doc: 'browser.md', after: ['R7', 'W5'] },
 
   // Phase 7: release readiness
   { id: 'KM0', title: 'Trustworthy tests', part: 'release', phase: 7, state: 'planned', date: '', where: 'qemu',
