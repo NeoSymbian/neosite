@@ -66,6 +66,6 @@ test('phase states and counts', () => {
 });
 
 test('doc links resolve to the docs repo or a full URL', () => {
-  assert.equal(docUrl('wifi.md'), 'https://github.com/NeoSymbian/docs/blob/main/wifi.md');
+  assert.equal(docUrl('hardware/wifi.md'), 'https://github.com/NeoSymbian/docs/blob/main/hardware/wifi.md');
   assert.equal(docUrl('https://github.com/NeoSymbian/neoui'), 'https://github.com/NeoSymbian/neoui');
 });
